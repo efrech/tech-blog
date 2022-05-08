@@ -1,10 +1,10 @@
 // You need the following required:
 const path = require('path');
 const express = require('express');
-// const session = require('express-session');
+const session = require('express-session');
 const exphbs = require('express-handlebars');
 const routes = require('./controllers');
-const helpers = require('./utils/helpers');
+const helpers = require('./utils/helper');
 
 
 const app = express();
