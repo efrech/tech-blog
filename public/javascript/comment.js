@@ -2,11 +2,21 @@ const commentFormHandler = async function(event) {
     event.preventDefault();
   
     const postId = document.querySelector('input[name="post-id"]').value;
-    const body = document.querySelector('textarea[name="comment-body"]').value;
+    const content = document.querySelector('textarea[name="comment-content"]').value;
   
-    // Create the functionality to help create the buttons for your website.
-  };
+    const response = await fetch(`/api/comments`, {
+      method: 'POST',
+      body: JSON.stringify({ post_id: postId, content }),
+      headers: { 'Content-Type': 'application/json' },
+    });
+
+    if (response.ok) {
+      document.location.replace(`/posts/${postId}`);
+    } else {
+      alert('Failed to create comment');
+    }
+};
   
   document
-    .querySelector('#new-comment-form')
+    .querySelector('.new-comment-form')
     .addEventListener('submit', commentFormHandler);
